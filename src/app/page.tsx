@@ -33,7 +33,7 @@ export default function HomePage() {
         .select('*')
         .eq('is_public', true)
         .eq('is_approved', true)
-        .limit(3)
+        .limit(6)
       setVideos(videosData || [])
 
       const { data: exListsData } = await supabase

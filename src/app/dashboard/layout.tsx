@@ -8,11 +8,10 @@ import { usePathname } from 'next/navigation'
 
 const tabs = [
     { href: '/dashboard/hub', label: 'My Healing Hub' },
+    { href: '/dashboard/feed', label: 'Explore Feed' },
     { href: '/dashboard/bad-ex', label: 'Bad Ex List' },
     { href: '/dashboard/quotes', label: 'My Quotes' },
-    { href: '/dashboard/videos', label: 'My Videos' },
-    { href: '/dashboard/feed', label: 'Explore Feed' },
-    { href: '/dashboard/library', label: 'Common Library' }
+    { href: '/dashboard/videos', label: 'My Videos' }
 ]
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
