@@ -38,10 +38,18 @@ export default function HomePage() {
 
       const { data: exListsData } = await supabase
         .from('bad_ex_lists')
-        .select('id, title, user_id, bad_ex_list_items(content)')
+        .select(`
+        id,
+        title,
+        user_id,
+        bad_ex_list_items:bad_ex_list_items(content)
+      `)
         .eq('is_public', true)
+        .filter('bad_ex_list_items.is_public', 'eq', true) // ✅ Only include public items
         .limit(3)
+
       setLists(exListsData || [])
+
     }
 
     fetchContent()
@@ -139,7 +147,7 @@ export default function HomePage() {
             className="rounded-full shadow-md hover:scale-105 transition-transform"
           />
           <p>
-            by <span className="font-medium">@Hien Dinh</span> —{' '}
+            by <span className="font-medium">Hien Dinh</span> —{' '}
             <a
               href="https://www.linkedin.com/in/hannidinhcs/"
               target="_blank"
