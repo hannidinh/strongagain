@@ -20,6 +20,10 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     return (
         <div className="min-h-screen flex bg-[#FAF7F5]">
             <aside className="w-64 bg-white border-r p-6 shadow-sm">
+                <Link href="/" className="text-sm text-muted-foreground hover:underline mt-4 block mb-6">
+                    ← Back to Home
+                </Link>
+
                 <h2 className="text-2xl font-serif mb-8">Dashboard</h2>
                 <ul className="space-y-3">
                     {tabs.map((tab) => (
