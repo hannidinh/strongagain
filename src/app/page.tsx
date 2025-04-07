@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { createClient } from '@/utils/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { useRouter } from 'next/navigation'
 
 const supabase = createClient()
 
@@ -14,6 +15,7 @@ export default function HomePage() {
   const [videos, setVideos] = useState<any[]>([])
   const [lists, setLists] = useState<any[]>([])
   const [user, setUser] = useState<any>(null)
+  const router = useRouter()
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -55,6 +57,12 @@ export default function HomePage() {
     fetchContent()
   }, [])
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    setUser(null) // Immediately reflect logout in the UI
+    router.refresh() // Optional: reload data / force server component revalidation
+  }
+
   return (
     <div className="min-h-screen bg-[#F6E8D5] text-[#3b3b3b] font-serif">
       {/* Navbar */}
@@ -63,11 +71,18 @@ export default function HomePage() {
         <div className="flex gap-4 text-sm">
           <Link href="/about">About</Link>
           {user ? (
-            <Link href="/dashboard">Dashboard</Link>
+            <>
+              <a href="/dashboard">Dashboard</a>
+              <button
+                onClick={handleLogout}
+                className="underline text-red-500 hover:text-red-700 transition"
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <>
-              <Link href="/login">Login</Link>
-              <Link href="/signup">Sign Up</Link>
+              <a href="/login">Login</a>
             </>
           )}
         </div>
