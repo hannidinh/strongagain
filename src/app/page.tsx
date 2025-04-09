@@ -27,7 +27,7 @@ export default function HomePage() {
         .select('*')
         .eq('is_public', true)
         .eq('is_approved', true)
-        .limit(4)
+        .limit(6)
       setQuotes(quotesData || [])
 
       const { data: videosData } = await supabase
@@ -67,7 +67,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#F6E8D5] text-[#3b3b3b] font-serif">
       {/* Navbar */}
       <nav className="flex justify-between items-center px-6 py-4 bg-[#fffefb] shadow-sm border-b border-[#f0e8df]">
-        <div className="text-2xl font-bold tracking-wide">StrongAgain</div>
+        <div className="text-2xl font-bold tracking-wide">Strong Again</div>
         <div className="flex gap-4 text-sm">
           <Link href="/about">About</Link>
           {user ? (
@@ -102,7 +102,7 @@ export default function HomePage() {
               </Button>
             </Link>
           ) : (
-            <Link href="/signup">
+            <Link href="/login">
               <Button variant="outline" className="rounded-full px-6 py-2 text-lg font-serif">
                 Join Now
               </Button>
